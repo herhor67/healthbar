@@ -1,3 +1,4 @@
+#hercore healthbar
 on damage:
 	name of victim is set:
 		name of victim doesn't contain "❤":
