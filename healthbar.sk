@@ -1,0 +1,28 @@
+on damage:
+	name of victim is set:
+		name of victim doesn't contain "❤":
+			name of victim is set:
+				set {nazwa.%victim%} to coloured name of victim
+			else:
+				set {nazwa.%victim%} to true
+#==================================================#
+	set {_hp} to health of victim * 2
+	set {_nazwa} to "♥"
+	loop {_hp}-1 times:
+		set {_nazwa} to "%{_nazwa}%♥"
+	replace all "♥♥"  with "❤" in {_nazwa}
+	set the display name of victim to "&4%{_nazwa}%"
+#==================================================#
+	set {cd.%victim%} to now
+	wait 3 seconds
+	wait 1 tick
+	difference between {cd.%victim%} and now is greater than 3 seconds:
+		{nazwa.%victim%} isn't true:
+			set the display name of victim to "%{nazwa.%victim%}%"
+		else:
+			clear display name of victim
+
+on death:
+	clear display name of victim
+	clear {nazwa.%victim%}
+	clear {cd.%victim%}
